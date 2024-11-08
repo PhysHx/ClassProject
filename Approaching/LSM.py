@@ -40,15 +40,15 @@ def gauss_jordan(A, b):
     
     return [M[i][-1] for i in range(n)]
 
-# Example usage:
+
 x = [0, 0.15, 0.31, 0.5, 0.6, 0.75]
 y = [1.0, 1.004, 1.031, 1.117, 1.223, 1.422]
 
-# Fit a linear polynomial (degree 1)
+# Fit a linear polynomial
 coefficients_linear = least_squares_fit(x, y, 1)
 print("Linear fit coefficients:", coefficients_linear)
 
-# Fit a quadratic polynomial (degree 2)
+# Fit a quadratic polynomial
 coefficients_quadratic = least_squares_fit(x, y, 2)
 print("Quadratic fit coefficients:", coefficients_quadratic)
 
