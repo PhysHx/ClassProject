@@ -60,7 +60,6 @@ x = result[0]
 result[2] = eval(p)                 #将字符串转为可执行代码并计算
 result[3] = result[2]-result[1]     #计算误差
 
-
 #绘制图像
 plt.figure()
 plt.plot(result[0],result[1], label='Precise')
