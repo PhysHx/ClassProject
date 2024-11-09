@@ -109,7 +109,7 @@ def Spline(x,nodex,nodey,M):
             return a*nodey[i]+b*nodey[i+1]+h**2/6*((a**3-a)*M[i]+(b**3-b)*M[i+1])
     return None
         
-plt_n=1000
+plt_n=200
 plt_x = np.linspace(0,1,plt_n)
 plt_y = np.full((dir_num, plt_n),np.NaN)
 
