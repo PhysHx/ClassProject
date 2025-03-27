@@ -11,7 +11,7 @@ def lu_decomposition(A):
             U[i][j] = A[i][j] - sum(L[i][k] * U[k][j] for k in range(i))
         for j in range(i + 1, n):
             L[j][i] = (A[j][i] - sum(L[j][k] * U[k][i] for k in range(i))) / U[i][i]
-
+    
     return L, U
 
 def forward_substitution(L, b):
@@ -36,14 +36,14 @@ def solve_lu(A, b):
 
 
 
-def partial_pivoting_lu_decomposition(A):
+def plu_decomposition(A):
     n = len(A)
     L = np.zeros((n, n))
     U = A.copy()
     P = np.eye(n)
 
     for i in range(n):
-        # Pivoting
+        # Find the row with the maximum value in the current column
         max_row = np.argmax(abs(U[i:, i])) + i
         if i != max_row:
             U[[i, max_row]] = U[[max_row, i]]
@@ -59,7 +59,7 @@ def partial_pivoting_lu_decomposition(A):
     return P, L, U
 
 def solve_plu(A, b):
-    P, L, U = partial_pivoting_lu_decomposition(A)
+    P, L, U = plu_decomposition(A)
     b = np.dot(P, b)
     y = forward_substitution(L, b)
     x = backward_substitution(U, y)
