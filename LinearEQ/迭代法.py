@@ -20,7 +20,7 @@ def jacobi(A,b,N=150,Norm=1.0e-8):
         
         
 # Gauss-Seidel迭代法
-def GS(A,b,N=150,Norm=1.0e-8):        
+def GS(A,b,N=150,Norm=1.0e-10):        
     rows, cols = A.shape
     x_old = np.zeros(cols)
     x = np.zeros(cols)
