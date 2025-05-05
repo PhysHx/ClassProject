@@ -39,22 +39,24 @@ def solve_lu(A, b):
 def plu_decomposition(A):
     n = len(A)
     L = np.zeros((n, n))
-    U = A.copy()
+    U = np.zeros((n, n))
     P = np.eye(n)
 
     for i in range(n):
         # Find the row with the maximum value in the current column
-        max_row = np.argmax(abs(U[i:, i])) + i
+        max_row = np.argmax(abs(A[i:, i])) + i
         if i != max_row:
-            U[[i, max_row]] = U[[max_row, i]]
+            A[[i, max_row]] = A[[max_row, i]]
             P[[i, max_row]] = P[[max_row, i]]
             if i > 0:
                 L[[i, max_row], :i] = L[[max_row, i], :i]
-
+                
         L[i][i] = 1
+        for j in range(i, n):
+            U[i][j] = A[i][j] - sum(L[i][k] * U[k][j] for k in range(i))
         for j in range(i + 1, n):
-            L[j][i] = U[j][i] / U[i][i]
-            U[j, i:] -= L[j][i] * U[i, i:]
+            L[j][i] = (A[j][i] - sum(L[j][k] * U[k][i] for k in range(i))) / U[i][i]
+    
 
     return P, L, U
 
